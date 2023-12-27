@@ -1,0 +1,41 @@
+Settings -> User Snippets -> typescriptreact.json
+
+""copy and paste the bellow section""
+=======================================
+"Typescript React Function Component": {
+    "prefix": "fc",
+    "body": [
+      "import { FC } from 'react'",
+      "",
+      "interface ${TM_FILENAME_BASE}Props {",
+      "  $1",
+      "}",
+      "",
+      "const $TM_FILENAME_BASE: FC<${TM_FILENAME_BASE}Props> = ({$2}) => {",
+      "  return <div>$TM_FILENAME_BASE</div>",
+      "}",
+      "",
+      "export default $TM_FILENAME_BASE"
+    ],
+    "description": "Typescript React Function Component"
+  },
+  ===================
+
+
+npm i class-variance-authority
+
+npm i lucide-react
+
+npm i clsx tailwind-merge
+
+npm i @upstash/redis
+
+npm install next-auth
+
+npm install @next-auth/upstash-redis-adapter
+
+npm install react-hot-toast
+
+npm install @tailwindcss/forms
+
+npm install react-hook-form @hookform/resolvers zod axios
