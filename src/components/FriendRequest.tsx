@@ -1,5 +1,7 @@
 'use client';
+import axios from 'axios';
 import { Check, UserPlus, X } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import { FC, useState } from 'react';
 
 interface FriendRequestProps {
@@ -11,9 +13,31 @@ const FriendRequest: FC<FriendRequestProps> = ({
   incomingFriendRequest,
   sessionId,
 }) => {
+  const router = useRouter();
+
   const [friendRequest, setFriendRequest] = useState<IncomingFriendRequest[]>(
     incomingFriendRequest
   );
+
+  const acceptFriend = async (senderId: string) => {
+    await axios.post('/api/friends/accept', { id: senderId });
+
+    setFriendRequest((pre) =>
+      pre.filter((request) => request.senderId !== senderId)
+    );
+
+    router.refresh();
+  };
+
+  const denyFriend = async (senderId: string) => {
+    await axios.post('/api/friends/deny', { id: senderId });
+
+    setFriendRequest((pre) =>
+      pre.filter((request) => request.senderId !== senderId)
+    );
+
+    router.refresh();
+  };
   return (
     <>
       {friendRequest.length === 0 ? (
@@ -24,12 +48,14 @@ const FriendRequest: FC<FriendRequestProps> = ({
             <UserPlus className='text-black' />
             <p className='font-medium text-lg'>{request.senderName}</p>
             <button
+              onClick={() => acceptFriend(request.senderId)}
               aria-label='accept friend'
               className='w-8 h-8 bg-indigo-600 hover:bg-indigo-700 grid place-items-center rounded-full transition hover:shadow-md'
             >
               <Check className='font-semibold text-white w-3/4 h-3/4' />
             </button>
             <button
+              onClick={() => denyFriend(request.senderId)}
               aria-label='deny friend'
               className='w-8 h-8 bg-red-600 hover:bg-red-700 grid place-items-center rounded-full transition hover:shadow-md'
             >
