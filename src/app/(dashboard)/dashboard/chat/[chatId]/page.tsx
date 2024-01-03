@@ -1,4 +1,6 @@
 import { authOptions } from '@/auth';
+import ChatInput from '@/components/ChatInput';
+import Messages from '@/components/Messages';
 import { fetchRedis } from '@/helpers/redis';
 import { db } from '@/lib/db';
 import { messageArrayValidator } from '@/lib/validator/message';
@@ -68,8 +70,21 @@ const page = async ({ params }: pageProps) => {
               />
             </div>
           </div>
+
+          <div className='flex flex-col leading-tight'>
+            <div className='text-xl flex items-center'>
+              <span className='text-gray-700 mr-3 font-semibold'>
+                {chatPartner.name}
+              </span>
+            </div>
+
+            <span className='text-sm text-gray-600'>{chatPartner.email}</span>
+          </div>
         </div>
       </div>
+
+      <Messages sessionId={session.user.id} initialMessages={initialMessages} />
+      <ChatInput chatPartner={chatPartner} chatId={chatId} />
     </div>
   );
 };
