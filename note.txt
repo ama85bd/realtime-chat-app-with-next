@@ -39,3 +39,9 @@ npm install react-hot-toast
 npm install @tailwindcss/forms
 
 npm install react-hook-form @hookform/resolvers zod axios
+
+npm install react-textarea-autosize
+
+npm install nanoid date-fns 
+
+npm install pusher pusher-js
