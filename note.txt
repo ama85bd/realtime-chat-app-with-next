@@ -45,3 +45,7 @@ npm install react-textarea-autosize
 npm install nanoid date-fns 
 
 npm install pusher pusher-js
+
+npm i react-loading-skeleton
+
+npm i @headlessui/react
